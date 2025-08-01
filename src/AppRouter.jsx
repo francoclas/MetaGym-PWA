@@ -1,8 +1,9 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+//Vistas
 import Login from './features/auth/Login';
 import Inicio from './features/inicio/Inicio';
-
+import Notificaciones from './features/notificaciones/Notificaciones';
 const AppRouter = () => {
   const [token, setToken] = useState(localStorage.getItem('token'));
 
@@ -32,6 +33,7 @@ const AppRouter = () => {
           <>
             <Route path="/" element={<Inicio />} />
             <Route path="*" element={<Navigate to="/" />} />
+            <Route path="/notificaciones" element={<Notificaciones />} />
           </>
         )}
       </Routes>

@@ -15,11 +15,12 @@ const Login = () => {
     const resultado = await loginUsuario(nombreusuario, password);
 
     if (resultado.ok) {
-      const { token, usuarioId, rol, nombreCompleto } = resultado.data;
+      const { token, Nombre,usuarioId, rol, nombreCompleto } = resultado.data;
       localStorage.setItem('token', token);
       window.dispatchEvent(new Event('token-updated'));
       localStorage.setItem('rol', rol);
       localStorage.setItem('usuarioId', usuarioId);
+      localStorage.setItem('usuario', nombreusuario);
       localStorage.setItem('nombreCompleto', nombreCompleto);
       console.log("redirigiendo inicio")
     } else {
