@@ -1,56 +1,67 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { loginUsuario } from '../../api/authAPI';
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { loginUsuario } from "../../api/authAPI";
+import "../../assets/estilos/auth/Login.css";
 
-const Login = () => {
-  const [nombreusuario, setNombreusuario] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+export default function Login() {
+  const [nombreusuario, setNombreusuario] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     const resultado = await loginUsuario(nombreusuario, password);
 
     if (resultado.ok) {
-      const { token, Nombre,usuarioId, rol, nombreCompleto } = resultado.data;
-      localStorage.setItem('token', token);
-      window.dispatchEvent(new Event('token-updated'));
-      localStorage.setItem('rol', rol);
-      localStorage.setItem('usuarioId', usuarioId);
-      localStorage.setItem('usuario', nombreusuario);
-      localStorage.setItem('nombreCompleto', nombreCompleto);
-      console.log("redirigiendo inicio")
+      const { token, usuarioId, rol, nombreCompleto } = resultado.data;
+      localStorage.setItem("token", token);
+      localStorage.setItem("rol", rol);
+      localStorage.setItem("usuarioId", usuarioId);
+      localStorage.setItem("usuario", nombreusuario);
+      localStorage.setItem("nombreCompleto", nombreCompleto);
+      window.dispatchEvent(new Event("token-updated"));
+      navigate("/");
     } else {
       setError(resultado.error);
     }
   };
 
   return (
-    <div className="login-container">
-      <h2>Iniciar sesión</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="login-wrapper">
+      <img
+        src="../../public/imgs/logos/metagymlogo.png"
+        alt="MetaGym Logo"
+        className="login-logo"
+      />
+      <h2 className="login-title">INICIO DE SESIÓN</h2>
+
+      <form onSubmit={handleSubmit} className="login-card">
         <input
           type="text"
-          placeholder="Usuario o correo"
+          placeholder="Ingrese usuario"
           value={nombreusuario}
           onChange={(e) => setNombreusuario(e.target.value)}
           required
         />
         <input
           type="password"
-          placeholder="Contraseña"
+          placeholder="Ingrese contraseña"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Ingresar</button>
+        <button type="submit" className="login-btn">
+          Continuar
+        </button>
+        {error && <p className="login-error">{error}</p>}
       </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+
+      <p className="login-register">
+        ¿No tiene cuenta? <Link to="/registro">Regístrese aquí</Link>
+      </p>
     </div>
   );
-};
-
-export default Login;
+}

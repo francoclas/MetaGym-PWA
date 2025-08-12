@@ -1,0 +1,56 @@
+.tarjeta-ejercicio {
+  background: #111;
+  border-radius: 10px;
+  padding: 12px;
+  color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.tarjeta-ejercicio img.imagen-ejercicio {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+.tarjeta-ejercicio h4 {
+  font-size: 18px;
+  margin-bottom: 6px;
+  color: #ff4444; /* Rojo de acento */
+}
+
+.tarjeta-ejercicio p {
+  font-size: 14px;
+  margin: 4px 0;
+  color: #ccc;
+}
+
+.tarjeta-ejercicio p strong {
+  color: white;
+}
+
+.tarjeta-ejercicio .mediciones {
+  margin-top: 8px;
+  padding: 6px 8px;
+  background: #1a1a1a;
+  border-radius: 6px;
+}
+
+.tarjeta-ejercicio .mediciones strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #ff4444;
+}
+
+.tarjeta-ejercicio .mediciones ul {
+  padding-left: 16px;
+  margin: 0;
+}
+
+.tarjeta-ejercicio .mediciones li {
+  font-size: 13px;
+  color: #aaa;
+}

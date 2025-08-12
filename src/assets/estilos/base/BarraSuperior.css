@@ -1,24 +1,26 @@
+#root {
+  padding: 0;
+  margin: 0;
+}
 .barra-superior {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #111;
-  padding: 5px 16px;
-  color: white;
-  border-bottom: 1px solid #333;
+  background-color: #0b0b0b; /* más oscuro */
+  padding: 8px 16px;
+  color: var(--color-text);
+  border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
   z-index: 10;
 }
 
 .logo {
-  height: 30px;
+  height: 33px;
+  padding: 0%;
 }
 
-.notificacion-btn {
-  background: none;
-  border: none;
-  color: white;
+.barra-superior a {
   font-size: 20px;
-  cursor: pointer;
+  color: var(--color-text);
 }

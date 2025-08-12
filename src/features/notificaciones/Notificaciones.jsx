@@ -18,7 +18,6 @@ const Notificaciones = () => {
 
   return (
     <div style={{ padding: '10px 16px 70px' }}>
-      <BarraSuperior />
       <h2>Notificaciones</h2>
 
       {notificaciones.length === 0 && <p>No hay notificaciones nuevas.</p>}

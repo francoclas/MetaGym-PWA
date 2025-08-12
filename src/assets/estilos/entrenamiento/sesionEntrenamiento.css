@@ -1,0 +1,30 @@
+.sesion-container {
+  padding: 16px;
+  background-color: #000;
+  color: #fff;
+  min-height: 100vh;
+}
+
+.sesion-header {
+  background: #111;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #222;
+  margin-bottom: 16px;
+}
+
+.sesion-header h2 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff4444;
+}
+
+.sesion-header p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.sesion-header strong {
+  color: #ff4444;
+}

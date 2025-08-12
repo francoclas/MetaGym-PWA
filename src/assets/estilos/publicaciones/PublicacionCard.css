@@ -1,0 +1,159 @@
+.post {
+  background: #000;
+  color: #fff;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.post-header .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.post-header-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-header-text .author {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.post-header-text .date {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.post-media img,
+.post-media video {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+}
+
+.post-footer {
+  padding: 10px;
+}
+
+.post-footer .title {
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.post-footer .description {
+  font-size: 14px;
+  color: #ddd;
+}
+
+.post-actions {
+  display: flex;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #222;
+}
+
+.post-actions button {
+  flex: 1;
+  padding: 8px 0;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.post-actions button:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.post-actions .liked {
+  color: #e63946; /* rojo */
+}
+
+.comentarios-section {
+  padding: 10px;
+  background: #111;
+}
+
+.agregar-comentario {
+  display: flex;
+  margin-top: 10px;
+}
+
+.agregar-comentario input {
+  flex: 1;
+  padding: 8px;
+  font-size: 14px;
+  background: #000;
+  border: 1px solid #333;
+  color: #fff;
+}
+
+.agregar-comentario button {
+  padding: 8px 12px;
+  background: #e63946;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+/* Slider */
+.post-media-slider {
+  position: relative;
+}
+
+.post-media-slider img,
+.post-media-slider video {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+}
+
+.media-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  color: white;
+  font-size: 22px;
+  padding: 5px 10px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.media-btn.prev {
+  left: 5px;
+}
+
+.media-btn.next {
+  right: 5px;
+}
+
+.media-indicadores {
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+.media-indicadores span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.5);
+  margin: 0 3px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.media-indicadores span.activo {
+  background: white;
+}

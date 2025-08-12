@@ -1,0 +1,115 @@
+.contenedor-entrenamiento {
+  padding: 1rem;
+  background-color: #121212;
+  color: #fff;
+  min-height: 100vh;
+}
+
+.header-entrenamiento {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  margin-bottom: 1rem;
+}
+
+.header-entrenamiento h2 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.timer {
+  font-size: 1.2rem;
+  color: #ff5252;
+}
+
+.timer-buttons button {
+  background: #222;
+  border: 1px solid #444;
+  color: #fff;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+}
+
+.timer-buttons button:hover {
+  background: #333;
+}
+
+.card-ejercicio {
+  background: #1e1e1e;
+  padding: 0.8rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.card-ejercicio h4 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.card-ejercicio .ejercicio-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card-ejercicio img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #444;
+}
+
+.checkbox-realizado {
+  margin: 0.5rem 0;
+}
+
+.series-form,
+.mediciones-form {
+  margin-top: 0.5rem;
+}
+
+.series-form input,
+.mediciones-form input {
+  background: #2a2a2a;
+  border: 1px solid #444;
+  color: #fff;
+  padding: 0.3rem;
+  border-radius: 4px;
+  width: 80px;
+}
+
+.series-form button,
+.mediciones-form button {
+  background: #333;
+  border: 1px solid #555;
+  color: #fff;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+}
+
+.btn-acciones {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.btn-finalizar {
+  background: #28a745;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-descartar {
+  background: #dc3545;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+}

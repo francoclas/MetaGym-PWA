@@ -1,0 +1,75 @@
+.comentario {
+  padding: 8px 0;
+  border-bottom: 1px solid #222;
+}
+
+.comentario-header {
+  display: flex;
+  align-items: center;
+}
+
+.comentario-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 8px;
+}
+
+.comentario-fecha {
+  font-size: 11px;
+  color: #888;
+  margin-left: 5px;
+}
+
+.comentario-texto {
+  font-size: 14px;
+  color: #ddd;
+  margin-top: 4px;
+}
+
+.comentario-acciones {
+  margin-top: 4px;
+}
+
+.comentario-acciones button {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.comentario-acciones button:hover {
+  color: #fff;
+}
+
+.comentario-responder {
+  display: flex;
+  margin-top: 6px;
+}
+
+.comentario-responder input {
+  flex: 1;
+  padding: 6px;
+  font-size: 13px;
+  background: #000;
+  border: 1px solid #333;
+  color: #fff;
+}
+
+.comentario-responder button {
+  padding: 6px 10px;
+  background: #e63946;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.comentario-respuestas {
+  margin-left: 30px;
+  margin-top: 6px;
+  border-left: 1px solid #333;
+  padding-left: 10px;
+}

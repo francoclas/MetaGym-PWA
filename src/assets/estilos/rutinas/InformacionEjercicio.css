@@ -1,0 +1,88 @@
+/* Contenedor principal */
+.info-ejercicio-container {
+  padding: 15px;
+  background-color: #111;
+  color: #fff;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Título */
+.info-ejercicio-container h2 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  border-bottom: 2px solid #ff0000;
+  padding-bottom: 4px;
+  word-break: break-word;
+}
+
+/* Datos del ejercicio */
+.info-ejercicio-container p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.info-ejercicio-container strong {
+  color: #ff4444;
+}
+
+/* Slider de medios */
+.media-slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 8px;
+  margin: 12px 0;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.media-item {
+  flex: 0 0 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  background-color: #222;
+  border-radius: 8px;
+  scroll-snap-align: center;
+}
+
+/* Quitar scroll bar visible */
+.media-slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* Tabla de mediciones */
+.tabla-mediciones-container {
+  margin-top: 15px;
+}
+
+.tabla-mediciones-container h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #ff4444;
+}
+
+.tabla-mediciones {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1a1a1a;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.tabla-mediciones th,
+.tabla-mediciones td {
+  padding: 8px;
+  font-size: 13px;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+.tabla-mediciones th {
+  background-color: #222;
+  color: #ff4444;
+}
+
+.tabla-mediciones tr:hover {
+  background-color: rgba(255, 0, 0, 0.08);
+}

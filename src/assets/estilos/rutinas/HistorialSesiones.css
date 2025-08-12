@@ -1,0 +1,42 @@
+/* Card de sesión */
+.card {
+  background-color: #1a1a1a !important;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 12px; /* 🔹 margen interno para que el texto no esté pegado */
+}
+
+/* Título de rutina */
+.card-title {
+  color: #ff4444;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+/* Texto general */
+.card-text {
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+/* Botón */
+.btn-primary {
+    color: white;
+  background-color: #ff0000;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: #cc0000;
+}
+
+/* Para centrar botón si es necesario */
+.card .btn-primary {
+  display: inline-block;
+  margin-top: 5px;
+}

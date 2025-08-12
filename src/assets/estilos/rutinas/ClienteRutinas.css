@@ -1,0 +1,62 @@
+.cliente-rutinas {
+  padding: 16px;
+  background: #000;
+  color: #fff;
+}
+
+.historial-btn-container {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.historial-btn {
+  background: #e63946;
+  color: #fff;
+  padding: 10px 16px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.seccion-titulo {
+  margin-bottom: 10px;
+}
+
+.lista-rutinas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rutina-card {
+  background: #111;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #222;
+}
+
+.rutina-card h4 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.rutina-card .tipo {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.detalle-btn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 10px;
+  background: #444;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.detalle-btn:hover {
+  background: #666;
+}

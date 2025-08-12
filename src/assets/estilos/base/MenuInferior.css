@@ -2,21 +2,31 @@
   position: fixed;
   bottom: 0;
   width: 100%;
-  background: #111;
+  background: #0b0b0b;
   display: flex;
   justify-content: space-around;
-  padding: 10px 0;
-  color: white;
-  border-top: 1px solid #333;
+  padding: 8px 0;
+  border-top: 1px solid var(--border-color);
+  z-index: 50;
 }
 
 .menu-inferior a {
-  color: #aaa;
-  text-decoration: none;
-  font-size: 14px;
+  color: var(--color-text-sec);
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-inferior a span {
+  font-size: 12px;
+  margin-top: 2px;
 }
 
 .menu-inferior a.activo {
-  color: #fff;
-  font-weight: bold;
+  color: var(--color-accent);
+}
+.menu-inferior a img {
+  width: 26px;
+  height: 26px;
 }
