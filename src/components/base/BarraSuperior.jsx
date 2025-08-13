@@ -19,11 +19,14 @@ export default function BarraSuperior() {
 
   return (
     <header className="barra-superior">
-      <img
+      <Link to="/novedades"className={location.pathname ==="/novedades" ? "activo" : ""} > 
+           <img
         src="/imgs/logos/logo.png"
         alt="Logo de Metagym"
         className="logo"
-      />
+        />
+     
+      </Link>
 
       <Link
         to="/Notificaciones"

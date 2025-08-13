@@ -71,3 +71,36 @@ export async function alternarLikePublicacion(idPublicacion) {
     return { ok: false, error: 'Error de red o servidor no disponible' };
   }
 }
+export async function obtenerNovedades() {
+  try {
+    const token = localStorage.getItem("token");
+
+    const response = await fetch(`${BASE_URL}/publicaciones/novedades`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json",
+      },
+    });
+
+    const data = await response.json();
+
+    if (response.ok && data.success) {
+      // Ajustar URLs de imágenes
+      const novedadesConUrls = (data.data || []).map(n => ({
+        ...n,
+        imagenAutorURL: n.imagenAutorURL
+          ? `${FOTOS_BASE_URL}${n.imagenAutorURL.replace(/^\//, "")}`
+          : null,
+        urlsMedia: n.urlsMedia?.map(url =>
+          url.startsWith("/") ? `${FOTOS_BASE_URL}${url.replace(/^\//, "")}` : url
+        ) || []
+      }));
+
+      return { ok: true, data: novedadesConUrls };
+    } else {
+      return { ok: false, error: data.message || "Error al obtener novedades" };
+    }
+  } catch (error) {
+    return { ok: false, error: "Error de red o servidor no disponible" };
+  }
+}

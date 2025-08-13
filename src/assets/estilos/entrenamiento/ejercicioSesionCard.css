@@ -1,58 +1,67 @@
 .ejercicio-card {
   background: #111;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #222;
-  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #333; 
+  margin-bottom: 20px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4); 
 }
 
 .ejercicio-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 10px;
+  gap: 14px;
+  margin-bottom: 14px;
 }
 
 .ejercicio-img {
-  width: 60px;
-  height: 60px;
+  width: 65px;
+  height: 65px;
   object-fit: contain;
   background: #222;
-  border-radius: 6px;
+  border-radius: 8px;
+  padding: 4px;
+  border: 1px solid #333;
 }
 
 .ejercicio-header h4 {
   margin: 0;
-  font-size: 16px;
+  font-size: 17px;
   color: #ff4444;
 }
 
 .ejercicio-header p {
-  margin: 2px 0;
-  font-size: 13px;
-  color: #aaa;
+  margin: 3px 0;
+  font-size: 14px;
+  color: #ccc;
 }
 
 /* Tablas de series y mediciones */
 .tabla-series {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 8px;
+  border-collapse: separate; /* separar bordes */
+  border-spacing: 0; /* reset */
+  margin-top: 10px;
   background: #1a1a1a;
-  border-radius: 6px;
+  border-radius: 8px;
   overflow: hidden;
 }
 
 .tabla-series th,
 .tabla-series td {
-  padding: 8px;
-  font-size: 13px;
+  padding: 10px;
+  font-size: 14px;
   border-bottom: 1px solid #333;
 }
 
 .tabla-series th {
   background: #222;
   color: #ff4444;
+  text-align: left;
+}
+
+.tabla-series tr:last-child td {
+  border-bottom: none;
 }
 
 .tabla-series tr:hover {
@@ -62,6 +71,6 @@
 .sin-mediciones {
   font-size: 13px;
   color: #888;
-  margin-top: 6px;
+  margin-top: 8px;
   font-style: italic;
 }

@@ -6,6 +6,7 @@ import Login from './features/auth/Login';
 import LayoutPrincipal from './components/base/LayoutBase';
 import Inicio from './features/inicio/Inicio';
 import Notificaciones from './features/notificaciones/Notificaciones';
+import Novedades  from './features/publicaciones/Novedades';
 //rutinas
 import ClienteRutinas from './components/rutinas/ClienteRutinas';
 import InformacionRutina from './components/rutinas/InformacionRutina';
@@ -46,6 +47,7 @@ const AppRouter = () => {
         <Route element={<LayoutPrincipal />}>
           <Route path="/" element={<Inicio />} />
           <Route path="/notificaciones" element={<Notificaciones />} />
+          <Route path="/novedades" element={<Novedades />} />
           <Route path="/rutinas" element={<ClienteRutinas />} />
           <Route path="/rutinas/:rutinaId" element={<InformacionRutina />} />
           <Route path="/ejercicio/:id" element={<InformacionEjercicio />} />

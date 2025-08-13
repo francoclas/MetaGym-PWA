@@ -1,0 +1,32 @@
+.notificacion-card {
+  border: 1px solid #333;
+  padding: 10px;
+  margin-bottom: 8px;
+  background: #1a1a1a;
+  color: white;
+  border-radius: 5px;
+}
+
+.notificacion-card.leida {
+  opacity: 0.7;
+}
+
+.noti-titulo {
+  margin: 0 0 4px;
+}
+
+.noti-mensaje {
+  font-size: 14px;
+  margin: 0 0 6px;
+}
+
+.noti-fecha {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.noti-link {
+  font-size: 12px;
+  color: #4ea8de;
+  text-decoration: underline;
+}

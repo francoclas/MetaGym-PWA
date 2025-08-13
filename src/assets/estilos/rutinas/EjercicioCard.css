@@ -1,25 +1,28 @@
 .tarjeta-ejercicio {
   background: #111;
-  border-radius: 10px;
-  padding: 12px;
+  border: 2px solid #222; /* borde sutil */
+  border-radius: 12px;
+  padding: 15px;
   color: white;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-  margin-bottom: 15px;
-  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  margin: 15px auto;
+  max-width: 95%;
+  text-align: center; /* centrar texto */
 }
 
 .tarjeta-ejercicio img.imagen-ejercicio {
   width: 100%;
   height: auto;
   border-radius: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   object-fit: cover;
+  border: 1px solid #333; /* borde para separar imagen del fondo */
 }
 
 .tarjeta-ejercicio h4 {
   font-size: 18px;
   margin-bottom: 6px;
-  color: #ff4444; /* Rojo de acento */
+  color: #ff4444; /* rojo acento */
 }
 
 .tarjeta-ejercicio p {
@@ -33,10 +36,12 @@
 }
 
 .tarjeta-ejercicio .mediciones {
-  margin-top: 8px;
-  padding: 6px 8px;
+  margin-top: 10px;
+  padding: 8px 10px;
   background: #1a1a1a;
   border-radius: 6px;
+  border: 1px solid #333; /* separador visual */
+  text-align: left; /* la lista queda alineada */
 }
 
 .tarjeta-ejercicio .mediciones strong {
