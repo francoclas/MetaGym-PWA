@@ -1,12 +1,10 @@
 import "../../assets/estilos/entrenamiento/ejercicioSesionCard.css";
-
+const FOTOS_BASE_URL = import.meta.env.VITE_FOTOS_BASE_URL;
 export default function EjercicioSesionCard({ ejercicio }) {
   return (
     <div className="ejercicio-card">
       <div className="ejercicio-header">
-        {ejercicio.imagenBaseUrl && (
-          <img src={ejercicio.imagenBaseUrl} alt={ejercicio.nombreEjercicio} className="ejercicio-img" />
-        )}
+          <img src={FOTOS_BASE_URL + ejercicio.imagenURL} alt={ejercicio.nombreEjercicio} className="ejercicio-img" />
         <div>
           <h4>{ejercicio.nombre}</h4>
           <p>{ejercicio.tipo} | Grupo muscular: {ejercicio.grupoMuscular}</p>

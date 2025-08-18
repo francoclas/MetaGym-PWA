@@ -74,3 +74,34 @@
   margin-top: 8px;
   font-style: italic;
 }
+.card-ejercicio {
+  transition: all 0.3s ease;
+}
+
+.card-ejercicio.ejercicio-activo {
+  border: 1px solid #ff5252;
+  box-shadow: 0 0 8px rgba(255, 82, 82, 0.4);
+}
+
+.contenido-ejercicio {
+  margin-top: 0.8rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid #333;
+}
+
+.contenido-ejercicio h5 {
+  font-size: 1rem;
+  color: #ff5252;
+  margin-bottom: 0.4rem;
+}
+
+.observaciones-form textarea {
+  width: 95%;
+  min-height: 60px;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 6px;
+  color: #fff;
+  padding: 0.4rem;
+  resize: vertical;
+}

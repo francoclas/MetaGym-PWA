@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { obtenerPerfilUsuario } from "../../api/usuarioAPI";
+import { 
+  obtenerPerfilUsuario, 
+  actualizarNombre,
+  actualizarCorreo,
+  actualizarTelefono,
+  actualizarPassword
+} from "../../api/usuarioAPI";
 import "../../assets/estilos/usuario/PerfilCliente.css";
 import { logout } from '../../utils/logout';
 
@@ -11,6 +17,7 @@ const PerfilCliente = () => {
     correo: "",
     telefono: "",
     password: "",
+    confPassword: ""
   });
 
   const usuarioId = localStorage.getItem("usuarioId");
@@ -26,6 +33,7 @@ const PerfilCliente = () => {
           correo: res.data.correo || "",
           telefono: res.data.telefono || "",
           password: "",
+          confPassword: ""
         });
       }
       setLoading(false);
@@ -39,9 +47,38 @@ const PerfilCliente = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleGuardar = () => {
-    console.log("Guardar cambios", formData);
-    // acá después implementamos el PUT para actualizar datos
+  const manejoGuardarCambios = async () => {
+    if (!perfil) return;
+
+    // Validaciones simples
+    if (!formData.correo.includes("@")) {
+      alert("Correo inválido");
+      return;
+    }
+    if (formData.telefono && isNaN(formData.telefono)) {
+      alert("El teléfono debe ser numérico");
+      return;
+    }
+    if (formData.password && formData.password !== formData.confPassword) {
+      alert("Las contraseñas no coinciden");
+      return;
+    }
+
+    // Comparaciones y llamados a la API
+    if (formData.nombreCompleto !== perfil.nombreCompleto) {
+      await actualizarNombre(usuarioId, nombreUsuario, formData.nombreCompleto, "Cliente");
+    }
+    if (formData.correo !== perfil.correo) {
+      await actualizarCorreo(usuarioId, nombreUsuario, formData.correo, "Cliente");
+    }
+    if (formData.telefono !== perfil.telefono) {
+      await actualizarTelefono(usuarioId, nombreUsuario, formData.telefono, "Cliente");
+    }
+    if (formData.password) {
+      await actualizarPassword(usuarioId, nombreUsuario, formData.password, formData.confPassword, "Cliente");
+    }
+
+    alert("Cambios guardados");
   };
 
   if (loading) return <p className="perfil-loading">Cargando perfil...</p>;
@@ -57,11 +94,11 @@ const PerfilCliente = () => {
       </div>
 
       <div className="perfil-info">
-            <button onClick={logout}>Cerrar sesión</button>
+        <button onClick={logout}>Cerrar sesión</button>
 
         <h3 className="perfil-nombre-usuario">@{nombreUsuario}</h3>
 
-        <label for="nombreCompleto">Nombre completo</label>
+        <label htmlFor="nombreCompleto">Nombre completo</label>
         <input
           type="text"
           name="nombreCompleto"
@@ -69,7 +106,7 @@ const PerfilCliente = () => {
           onChange={handleChange}
         />
 
-        <label for="correo">Correo</label>
+        <label htmlFor="correo">Correo</label>
         <input
           type="email"
           name="correo"
@@ -77,7 +114,7 @@ const PerfilCliente = () => {
           onChange={handleChange}
         />
 
-        <label for="telefono">Teléfono</label>
+        <label htmlFor="telefono">Teléfono</label>
         <input
           type="text"
           name="telefono"
@@ -85,7 +122,7 @@ const PerfilCliente = () => {
           onChange={handleChange}
         />
 
-        <label for="password">Contraseña</label>
+        <label htmlFor="password">Nueva Contraseña</label>
         <input
           type="password"
           name="password"
@@ -93,7 +130,15 @@ const PerfilCliente = () => {
           onChange={handleChange}
         />
 
-        <button className="btn-guardar" onClick={handleGuardar}>
+        <label htmlFor="confPassword">Confirmar Contraseña</label>
+        <input
+          type="password"
+          name="confPassword"
+          value={formData.confPassword}
+          onChange={handleChange}
+        />
+
+        <button className="btn-guardar" onClick={manejoGuardarCambios}>
           Guardar cambios
         </button>
       </div>

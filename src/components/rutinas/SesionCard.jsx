@@ -14,9 +14,9 @@ export default function SesionCard({ sesion }) {
         </p>
         <Link
           to={`/sesionentrenamiento/${sesion.sesionRutinaId}`}
-          className="btn btn-primary btn-sm"
+          className="historial-btn"
         >
-          Ver detalles
+          Revisar entrenamiento
         </Link>
       </div>
     </div>

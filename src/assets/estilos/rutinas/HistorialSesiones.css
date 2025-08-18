@@ -1,12 +1,47 @@
-/* Card de sesión */
+/* Contenedor general del historial */
+.historial-container {
+  padding: 0 15px; /* margen lateral para todo el contenido */
+  box-sizing: border-box;
+}
+
+/* Título */
+.historial-container h2,
+.historial-container h3 {
+  margin: 10px 0 15px;
+  padding: 0;
+}
+
+/* Filtro */
+.filtro-fecha {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.filtro-fecha label {
+  font-weight: bold;
+  color: #fff;
+}
+
+.filtro-fecha input[type="date"] {
+  background: #111;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 6px;
+}
+
+/* Tarjetas */
 .card {
   background-color: #1a1a1a !important;
   border: 1px solid #333;
-  border-radius: 8px;
-  padding: 12px; /* 🔹 margen interno para que el texto no esté pegado */
+  border-radius: 10px;
+  padding: 14px; 
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
-/* Título de rutina */
 .card-title {
   color: #ff4444;
   font-size: 16px;
@@ -14,19 +49,17 @@
   margin-bottom: 8px;
 }
 
-/* Texto general */
 .card-text {
   font-size: 13px;
   margin-bottom: 6px;
 }
 
-/* Botón */
 .btn-primary {
-    color: white;
+  color: white;
   background-color: #ff0000;
   border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
+  padding: 8px 14px;
+  border-radius: 6px;
   font-size: 13px;
   font-weight: bold;
 }
@@ -35,8 +68,7 @@
   background-color: #cc0000;
 }
 
-/* Para centrar botón si es necesario */
 .card .btn-primary {
   display: inline-block;
-  margin-top: 5px;
+  margin-top: 8px;
 }

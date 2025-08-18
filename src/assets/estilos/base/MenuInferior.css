@@ -6,8 +6,9 @@
   display: flex;
   justify-content: space-around;
   padding: 8px 0;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid white;
   z-index: 50;
+  
 }
 
 .menu-inferior a {

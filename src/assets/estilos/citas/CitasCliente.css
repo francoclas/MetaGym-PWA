@@ -1,0 +1,43 @@
+
+.contenedor-citas{
+  text-align: center;
+}
+.lista-citas{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.filtro-estados-container {
+  width: 100%;
+  padding: 10px 15px;
+  box-sizing: border-box;
+}
+
+.filtro-estados-label {
+  display: block;
+  color: #ff4444;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.filtro-estados-select {
+  width: 100%;
+  padding: 10px;
+  background-color: #222;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: white;
+  font-size: 14px;
+  appearance: none;
+  outline: none;
+}
+
+.filtro-estados-select:focus {
+  border-color: #ff4444;
+  box-shadow: 0 0 4px rgba(255, 68, 68, 0.5);
+}
+
+.filtro-estados-select option {
+  background-color: #111;
+  color: white;
+}

@@ -1,10 +1,10 @@
 .cliente-rutinas {
   padding: 16px;
-  background: #000;
   color: #fff;
 }
 
 .historial-btn-container {
+  padding-top: 10px;
   margin-bottom: 20px;
   text-align: center;
 }

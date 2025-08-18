@@ -60,9 +60,9 @@ export default function ClienteRutinas() {
 
      <Link
           to={`/rutinas/${asignacion.rutina?.id}?asignacionId=${asignacion.id}`}
-          className="btn-detalles"
+          className="historial-btn"
         >
-          Ver detalles
+          Ver informacion de la rutina
           </Link>
         </div>
       ))}

@@ -1,4 +1,6 @@
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+// notificacionesAPI.js
+import { solicitudAPI } from "./manejoAPI";
+
 function authParams() {
   return {
     token: localStorage.getItem('token'),
@@ -7,84 +9,39 @@ function authParams() {
   };
 }
 
-export async function obtenerNoLeidas() {
-  const token = localStorage.getItem('token');
-  const usuarioId = localStorage.getItem('usuarioId');
-  const rol = localStorage.getItem('rol');
-
-  try {
-    const response = await fetch(`${BASE_URL}/notificaciones/no-leidas?usuarioId=${usuarioId}&rol=${rol}`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
-
-    const data = await response.json();
-
-    if (response.ok && data.success) {
-      return { ok: true, data: data.data };
-    } else {
-      return { ok: false, error: data.message || 'Error al obtener notificaciones' };
-    }
-  } catch (err) {
-    return { ok: false, error: 'Error de red' };
-  }
-}
-export async function obtenerLeidas() {
-  const { token, usuarioId, rol } = authParams();
-  try {
-    const r = await fetch(
-      `${BASE_URL}/notificaciones/leidas?usuarioId=${usuarioId}&rol=${rol}`,
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-    const data = await r.json();
-    return r.ok && data.success
-      ? { ok: true, data: data.data }
-      : { ok: false, error: data.message || "Error al obtener leídas" };
-  } catch {
-    return { ok: false, error: "Error de red" };
-  }
+export function obtenerNoLeidas() {
+  const { usuarioId, rol } = authParams();
+  return solicitudAPI(`/notificaciones/no-leidas`, {
+    params: { usuarioId, rol }
+  });
 }
 
-export async function marcarNotificacionLeida(id) {
-  const { token, usuarioId, rol } = authParams();
-  try {
-    const r = await fetch(
-      `${BASE_URL}/notificaciones/${id}/leer?usuarioId=${usuarioId}&rol=${rol}`,
-      { method: "PATCH", headers: { Authorization: `Bearer ${token}` } }
-    );
-    // 204 No Content esperado
-    return r.ok ? { ok: true } : { ok: false, error: "No se pudo marcar como leída" };
-  } catch {
-    return { ok: false, error: "Error de red" };
-  }
+export function obtenerLeidas() {
+  const { usuarioId, rol } = authParams();
+  return solicitudAPI(`/notificaciones/leidas`, {
+    params: { usuarioId, rol }
+  });
 }
 
-export async function marcarTodasLeidas() {
-  const { token, usuarioId, rol } = authParams();
-  try {
-    const r = await fetch(
-      `${BASE_URL}/notificaciones/leer-todas?usuarioId=${usuarioId}&rol=${rol}`,
-      { method: "PATCH", headers: { Authorization: `Bearer ${token}` } }
-    );
-    return r.ok ? { ok: true } : { ok: false, error: "No se pudieron marcar todas" };
-  } catch {
-    return { ok: false, error: "Error de red" };
-  }
+export function marcarNotificacionLeida(id) {
+  const { usuarioId, rol } = authParams();
+  return solicitudAPI(`/notificaciones/${id}/leer`, {
+    method: "PATCH",
+    params: { usuarioId, rol }
+  });
 }
 
-export async function contarNoLeidas() {
-  const { token, usuarioId, rol } = authParams();
-  try {
-    const r = await fetch(
-      `${BASE_URL}/notificaciones/no-leidas/contar?usuarioId=${usuarioId}&rol=${rol}`,
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-    const data = await r.json();
-    return r.ok && data.success
-      ? { ok: true, data: data.data } // número
-      : { ok: false, error: data.message || "Error al contar no leídas" };
-  } catch {
-    return { ok: false, error: "Error de red" };
-  }
+export function marcarTodasLeidas() {
+  const { usuarioId, rol } = authParams();
+  return solicitudAPI(`/notificaciones/leer-todas`, {
+    method: "PATCH",
+    params: { usuarioId, rol }
+  });
+}
+
+export function contarNoLeidas() {
+  const { usuarioId, rol } = authParams();
+  return solicitudAPI(`/notificaciones/no-leidas/contar`, {
+    params: { usuarioId, rol }
+  });
 }

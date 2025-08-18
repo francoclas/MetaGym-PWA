@@ -1,3 +1,4 @@
+import "../../assets/estilos/rutinas/EjercicioCard.css"
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { obtenerInformacionRutina } from "../../api/rutinasAPI";
@@ -51,7 +52,7 @@ export default function InformacionRutina() {
     <div className="contenedor-rutina">
       <button 
         onClick={controlComenzarEntrenamiento}
-        className="btn btn-primary"
+        className="historial-btn"
       >
         Comenzar entrenamiento de esta rutina
       </button>

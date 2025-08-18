@@ -66,7 +66,7 @@ export default function Entrenamiento() {
   if (!sesion) return <p>Cargando...</p>;
 
   return (
-    <div className="container">
+    <div className="contenedor">
       <h2>{sesion.nombreRutina}</h2>
       <p>
         Tiempo: {Math.floor(segundos / 60)}:
@@ -74,11 +74,11 @@ export default function Entrenamiento() {
       </p>
       <button onClick={() => setSegundos(prev => prev + 60)}>+1 min</button>
       <button onClick={() => setSegundos(prev => Math.max(0, prev - 60))}>-1 min</button>
-
-      <ListaEjercicios ejercicios={sesion.ejercicios} actualizarEjercicio={actualizarEjercicio} />
-
+      <div class="contenedor-ejercicios">
+        <ListaEjercicios ejercicios={sesion.ejercicios} actualizarEjercicio={actualizarEjercicio} />
+      </div>
       <div className="mt-3">
-        <button onClick={manejarFinalizarSesion} className="btn btn-success me-2">Finalizar</button>
+        <button onClick={manejarFinalizarSesion} className="historial-btn me-2">Finalizar</button>
         <button onClick={manejarDescartar} className="btn btn-danger">Descartar</button>
       </div>
     </div>

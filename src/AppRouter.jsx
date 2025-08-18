@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { ToastContainer } from "react-toastify";
 import { useEffect, useState } from 'react';
 //Vistas
 //Inicio
@@ -14,8 +15,10 @@ import InformacionEjercicio from './components/rutinas/InformacionEjercicio';
 import Entrenamiento from './components/entrenamiento/Entrenamiento';
 import SesionEntrenamiento from './components/entrenamiento/SesionEntrenamiento';
 //citas
+import CitasCliente from './features/citas/CitasCliente';
+import InformacionCita from './features/citas/InformacionCita'
 //Perfil
-import PerfilCliente from './components/usuario/PerfilCliente';
+import PerfilCliente from './features/usuario/PerfilCliente'
 import HistorialSesiones from './components/rutinas/HistorialSesiones';
 const AppRouter = () => {
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -25,8 +28,8 @@ const AppRouter = () => {
       setToken(localStorage.getItem('token'));
     };
 
-    window.addEventListener('storage', checkToken); // si cambia desde otra pestaña
-    window.addEventListener('token-updated', checkToken); // evento manual
+    window.addEventListener('storage', checkToken); 
+    window.addEventListener('token-updated', checkToken);
 
     return () => {
       window.removeEventListener('storage', checkToken);
@@ -54,13 +57,17 @@ const AppRouter = () => {
           <Route path="/entrenamiento" element={<Entrenamiento />} />
           <Route path="/historialsesiones" element={<HistorialSesiones />} />
           <Route path="/sesionentrenamiento/:sesionId" element={<SesionEntrenamiento />} />
+          <Route path="/citas" element={<CitasCliente/>}/>
+          <Route path="/cita/:citaId" element={<InformacionCita />} />
           <Route path="/perfil" element={<PerfilCliente />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" />} />
       </>
+      
     )}
   </Routes>
+      <ToastContainer position="top-right" autoClose={3000} />
     </BrowserRouter>
   );
 };

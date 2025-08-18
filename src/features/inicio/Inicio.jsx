@@ -17,7 +17,7 @@ const Inicio = () => {
   }, []);
 
   return (
-    <div style={{ paddingBottom: '60px' }}>
+    <div>
       {publicaciones.map(pub => (
         <PublicacionCard key={pub.publicacionId} publicacion={pub} />
       ))}

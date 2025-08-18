@@ -1,30 +1,35 @@
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import { solicitudAPI } from "./manejoAPI";
 
 export async function obtenerPerfilUsuario(usuarioId, rol = "Cliente") {
-  try {
-    const token = localStorage.getItem("token");
+  return solicitudAPI("/usuario/perfil", {
+    params: { usuarioId, rol }
+  });
+}
 
-    const response = await fetch(
-      `${BASE_URL}/usuario/perfil?usuarioId=${usuarioId}&rol=${rol}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: "application/json",
-        },
-      }
-    );
+export async function actualizarNombre(id, usuario, nombreNuevo, rol) {
+  return solicitudAPI(`/usuario/${id}/nombre`, {
+    method: "PATCH",
+    params: { usuario, nombreNuevo, rol }
+  });
+}
 
-    const data = await response.json();
+export async function actualizarCorreo(id, usuario, correoNuevo, rol) {
+  return solicitudAPI(`/usuario/${id}/correo`, {
+    method: "PATCH",
+    params: { usuario, correoNuevo, rol }
+  });
+}
 
-    if (response.ok && data.success) {
-      return { ok: true, data: data.data };
-    } else {
-      return {
-        ok: false,
-        error: data.message || "Error al obtener el perfil del usuario",
-      };
-    }
-  } catch (error) {
-    return { ok: false, error: "Error de red o servidor no disponible" };
-  }
+export async function actualizarTelefono(id, usuario, telefonoNuevo, rol) {
+  return solicitudAPI(`/usuario/${id}/telefono`, {
+    method: "PATCH",
+    params: { usuario, telefonoNuevo, rol }
+  });
+}
+
+export async function actualizarPassword(id, usuario, nuevaPassword, confPassword, rol) {
+  return solicitudAPI(`/usuario/${id}/password`, {
+    method: "PATCH",
+    params: { usuario, nuevaPassword, confPassword, rol }
+  });
 }

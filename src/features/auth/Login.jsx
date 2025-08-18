@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { loginUsuario } from "../../api/authAPI";
 import "../../assets/estilos/auth/Login.css";
@@ -6,8 +6,21 @@ import "../../assets/estilos/auth/Login.css";
 export default function Login() {
   const [nombreusuario, setNombreusuario] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(""); 
+  const [deferredPrompt, setDeferredPrompt] = useState(null); // 👉 evento PWA
   const navigate = useNavigate();
+  const BASE_URL = import.meta.env.VITE_FOTOS_BASE_URL
+  // Capturar el evento cuando el navegador detecta que se puede instalar
+  useEffect(() => {
+    const handler = (e) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+    };
+
+    window.addEventListener("beforeinstallprompt", handler);
+
+    return () => window.removeEventListener("beforeinstallprompt", handler);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,9 +37,15 @@ export default function Login() {
       localStorage.setItem("nombreCompleto", nombreCompleto);
       window.dispatchEvent(new Event("token-updated"));
       navigate("/");
-    } else {
-      setError(resultado.error);
     }
+  };
+
+  const instalarPWA = async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log("Resultado instalación:", outcome);
+    setDeferredPrompt(null);
   };
 
   return (
@@ -36,8 +55,6 @@ export default function Login() {
         alt="MetaGym Logo"
         className="login-logo"
       />
-      <h2 className="login-title">INICIO DE SESIÓN</h2>
-
       <form onSubmit={handleSubmit} className="login-card">
         <input
           type="text"
@@ -54,14 +71,26 @@ export default function Login() {
           required
         />
         <button type="submit" className="login-btn">
-          Continuar
+          Iniciar sesión
         </button>
         {error && <p className="login-error">{error}</p>}
       </form>
 
       <p className="login-register">
-        ¿No tiene cuenta? <Link to="/registro">Regístrese aquí</Link>
+        ¿No tiene cuenta? <Link to= {BASE_URL+"Home/RegistrarUsuario"}>Regístrese aquí</Link>
       </p>
+
+      {deferredPrompt && (
+        <div className="instalar-pwa">
+          <p>
+            📱 <strong>Instalá la App</strong> para entrar más rápido y recibir
+            notificaciones.
+          </p>
+          <button className="historial-btn" onClick={instalarPWA}>
+            Instalar ahora
+          </button>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,4 +1,3 @@
-import React from "react";
 import "../../assets/estilos/publicaciones/NovedadCard.css";
 
 export default function NovedadCard({ novedad }) {
@@ -10,7 +9,6 @@ export default function NovedadCard({ novedad }) {
         )}
         <div>
           <h4 className="novedad-titulo">{novedad.titulo}</h4>
-          <p className="novedad-autor">Por {novedad.nombreAutor}</p>
           <p className="novedad-fecha">
             {new Date(novedad.fechaCreacion).toLocaleDateString()}
           </p>

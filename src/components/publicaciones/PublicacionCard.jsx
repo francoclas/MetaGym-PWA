@@ -3,6 +3,7 @@ import { useState } from "react";
 import ComentarioCard from "./ComentarioCard";
 import { alternarLikePublicacion } from "../../api/publicacionesAPI";
 import { agregarComentario } from "../../api/comentariosAPI";
+
 export default function PublicacionCard({ publicacion }) {
   const {
     publicacionId,
@@ -13,21 +14,22 @@ export default function PublicacionCard({ publicacion }) {
     descripcion,
     urlsMedia,
     comentarios,
-    cantLikes
+    cantLikes,
   } = publicacion;
 
-  // Ajustar URL de imagen de perfil para http si es relativa
+  // Imagen de perfil ajustada
   const imagenPerfil =
     imagenAutorURL && imagenAutorURL.startsWith("/")
-      ? `${import.meta.env.VITE_FOTOS_BASE_URL.replace(/^https/, "http")}${imagenAutorURL.replace(/^\//, "")}`
+      ? `${import.meta.env.VITE_FOTOS_BASE_URL}${imagenAutorURL.replace(/^\//, "")}`
       : imagenAutorURL;
 
-  // Ajustar URLs de media (solo imágenes) a http
-  const mediasAjustadas = urlsMedia?.map((url) =>
-    url.startsWith("/") && !url.toLowerCase().endsWith(".mp4")
-      ? `${import.meta.env.VITE_FOTOS_BASE_URL.replace(/^https/, "http")}${url.replace(/^\//, "")}`
-      : url
-  ) || [];
+  // Ajustar URLs de media
+  const mediasAjustadas =
+    urlsMedia?.map((url) =>
+      url.startsWith("/") && !url.toLowerCase().endsWith(".mp4")
+        ? `${import.meta.env.VITE_FOTOS_BASE_URL}${url.replace(/^\//, "")}`
+        : url
+    ) || [];
 
   const [likes, setLikes] = useState(cantLikes || 0);
   const [meGusta, setMeGusta] = useState(false);
@@ -36,35 +38,36 @@ export default function PublicacionCard({ publicacion }) {
   const [nuevoComentario, setNuevoComentario] = useState("");
   const [mediaIndex, setMediaIndex] = useState(0);
 
+  // Like publicación
   const manejarLike = async () => {
     const res = await alternarLikePublicacion(publicacionId);
     if (res.ok) {
       setMeGusta(!meGusta);
       setLikes(meGusta ? likes - 1 : likes + 1);
-    } else {
-      console.error(res.error);
     }
   };
 
+  // Nuevo comentario raíz
   const enviarComentario = async () => {
     if (!nuevoComentario.trim()) return;
     const res = await agregarComentario({
       publicacionId,
-      contenido: nuevoComentario
+      contenido: nuevoComentario,
     });
     if (res.ok) {
-      setListaComentarios([res.data, ...listaComentarios]);
+      const conPubli = { ...res.data, publicacionId };
+      setListaComentarios([conPubli, ...listaComentarios]);
       setNuevoComentario("");
-    } else {
-      console.error(res.error);
     }
   };
 
+  // Agregar respuesta a un comentario
   const agregarRespuestaAComentario = (comentarioId, nuevaRespuesta) => {
+    const conPubli = { ...nuevaRespuesta, publicacionId };
     setListaComentarios((prev) =>
       prev.map((c) =>
         c.comentarioId === comentarioId
-          ? { ...c, respuestas: [...(c.respuestas || []), nuevaRespuesta] }
+          ? { ...c, respuestas: [...(c.respuestas || []), conPubli] }
           : c
       )
     );
@@ -141,10 +144,11 @@ export default function PublicacionCard({ publicacion }) {
           {listaComentarios.map((com) => (
             <ComentarioCard
               key={com.comentarioId}
-              comentario={com}
+              comentario={{ ...com, publicacionId }}  // 👈 forzamos publicacionId en todos
               onRespuestaAgregada={agregarRespuestaAComentario}
             />
           ))}
+
           <div className="agregar-comentario">
             <input
               type="text"

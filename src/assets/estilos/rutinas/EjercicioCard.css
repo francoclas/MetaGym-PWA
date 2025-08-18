@@ -1,28 +1,30 @@
+.contenedor-rutina{
+  text-align: center;
+}
 .tarjeta-ejercicio {
   background: #111;
-  border: 2px solid #222; /* borde sutil */
+  border: 2px solid #222; 
   border-radius: 12px;
-  padding: 15px;
   color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   margin: 15px auto;
-  max-width: 95%;
-  text-align: center; /* centrar texto */
+  max-width: 90%;
+  text-align: center;
 }
 
 .tarjeta-ejercicio img.imagen-ejercicio {
-  width: 100%;
+  width: 95%;
   height: auto;
   border-radius: 10px;
-  margin-bottom: 12px;
+  margin-top: 5px;
   object-fit: cover;
-  border: 1px solid #333; /* borde para separar imagen del fondo */
+  border: 1px solid #333;
 }
 
 .tarjeta-ejercicio h4 {
   font-size: 18px;
   margin-bottom: 6px;
-  color: #ff4444; /* rojo acento */
+  color: #ff4444; 
 }
 
 .tarjeta-ejercicio p {
@@ -40,8 +42,8 @@
   padding: 8px 10px;
   background: #1a1a1a;
   border-radius: 6px;
-  border: 1px solid #333; /* separador visual */
-  text-align: left; /* la lista queda alineada */
+  border: 1px solid #333; 
+  text-align: left; 
 }
 
 .tarjeta-ejercicio .mediciones strong {
@@ -58,4 +60,7 @@
 .tarjeta-ejercicio .mediciones li {
   font-size: 13px;
   color: #aaa;
+}
+.historial-btn{
+  margin-bottom: 10px;
 }

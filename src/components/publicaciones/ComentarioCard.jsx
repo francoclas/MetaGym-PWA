@@ -3,24 +3,36 @@ import { useState } from "react";
 import { agregarComentario } from "../../api/comentariosAPI";
 
 export default function ComentarioCard({ comentario, onRespuestaAgregada }) {
-  const { comentarioId, autor, contenido, fecha, urlImagenAutor, respuestas, publicacionId } = comentario;
+  const {
+    comentarioId,
+    autor,
+    contenido,
+    fecha,
+    urlImagenAutor,
+    respuestas,
+    publicacionId,
+    comentarioPadreId,
+  } = comentario;
+
   const [mostrarRespuesta, setMostrarRespuesta] = useState(false);
   const [textoRespuesta, setTextoRespuesta] = useState("");
 
-  // Ajustar URL imagen perfil para que use http si es relativa
-const imagenPerfil = `${import.meta.env.VITE_FOTOS_BASE_URL}${urlImagenAutor}`;
+  const imagenPerfil = urlImagenAutor
+    ? `${import.meta.env.VITE_FOTOS_BASE_URL}${urlImagenAutor}`
+    : "/default-avatar.png";
 
   const enviarRespuesta = async () => {
     if (!textoRespuesta.trim()) return;
     const res = await agregarComentario({
       publicacionId,
       contenido: textoRespuesta,
-      comentarioPadreId: comentarioId
+      comentarioPadreId: comentarioId,
     });
     if (res.ok) {
+      const nuevaResp = { ...res.data, publicacionId };
       setTextoRespuesta("");
       setMostrarRespuesta(false);
-      onRespuestaAgregada(comentarioId, res.data);
+      onRespuestaAgregada(comentarioId, nuevaResp);
     } else {
       console.error(res.error);
     }
@@ -32,15 +44,22 @@ const imagenPerfil = `${import.meta.env.VITE_FOTOS_BASE_URL}${urlImagenAutor}`;
         <img src={imagenPerfil} alt={autor} className="comentario-avatar" />
         <div>
           <strong>{autor}</strong>
-          <span className="comentario-fecha">{new Date(fecha).toLocaleString()}</span>
+          <span className="comentario-fecha">
+            {fecha ? new Date(fecha).toLocaleString() : ""}
+          </span>
         </div>
       </div>
 
       <p className="comentario-texto">{contenido}</p>
 
-      <div className="comentario-acciones">
-        <button onClick={() => setMostrarRespuesta(!mostrarRespuesta)}>💬 Responder</button>
-      </div>
+      {/* ✅ Solo mostrar el botón de responder en comentarios raíz */}
+      {!comentarioPadreId && (
+        <div className="comentario-acciones">
+          <button onClick={() => setMostrarRespuesta(!mostrarRespuesta)}>
+            💬 Responder
+          </button>
+        </div>
+      )}
 
       {mostrarRespuesta && (
         <div className="comentario-responder">
@@ -59,7 +78,7 @@ const imagenPerfil = `${import.meta.env.VITE_FOTOS_BASE_URL}${urlImagenAutor}`;
           {respuestas.map((resp) => (
             <ComentarioCard
               key={resp.comentarioId}
-              comentario={resp}
+              comentario={{ ...resp, publicacionId }}
               onRespuestaAgregada={onRespuestaAgregada}
             />
           ))}

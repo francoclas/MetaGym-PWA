@@ -14,19 +14,34 @@ export default function Novedades() {
 
       const res = await obtenerNovedades();
       if (res.ok) {
-        setNovedades(res.data || []);
+        // Ordenar por fecha de creación (más reciente primero)
+        const ordenadas = (res.data || []).sort(
+          (a, b) => new Date(b.fechaCreacion) - new Date(a.fechaCreacion)
+        );
+        setNovedades(ordenadas);
       } else {
         setError(res.error || "No se pudieron cargar las novedades");
       }
-
       setCargando(false);
     };
-
     cargar();
   }, []);
 
-  if (cargando) return <div className="historial-sesiones"><p>Cargando...</p></div>;
-  if (error) return <div className="historial-sesiones"><p style={{ color: "tomato" }}>{error}</p></div>;
+  if (cargando) {
+    return (
+      <div className="historial-sesiones">
+        <p>Cargando...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="historial-sesiones">
+        <p style={{ color: "tomato" }}>{error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="historial-sesiones">
@@ -36,8 +51,8 @@ export default function Novedades() {
         <p>No hay novedades por el momento.</p>
       ) : (
         <div className="lista-sesiones">
-          {novedades.map((n, i) => (
-            <NovedadCard key={n.publicacionId ?? i} novedad={n} />
+          {novedades.map((n) => (
+            <NovedadCard key={n.publicacionId || `${n.titulo}-${n.fechaCreacion}`} novedad={n} />
           ))}
         </div>
       )}

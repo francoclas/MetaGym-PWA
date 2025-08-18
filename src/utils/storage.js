@@ -1,12 +1,12 @@
 import localforage from "localforage";
 
-// Configuración base de IndexedDB/localStorage (automático por localforage)
+// configurar bd para usar
 localforage.config({
-  name: "MetaGymApp",       // Nombre de la base de datos
-  storeName: "almacenDatos" // Nombre del almacén
+  name: "MetaGymApp",       
+  storeName: "almacenDatos" 
 });
 
-// Función para guardar datos
+//guardar datos
 export async function guardarDato(clave, valor) {
   try {
     await localforage.setItem(clave, valor);
@@ -15,7 +15,7 @@ export async function guardarDato(clave, valor) {
   }
 }
 
-// Función para obtener datos
+//obtener datos
 export async function obtenerDato(clave) {
   try {
     return await localforage.getItem(clave);
@@ -25,7 +25,7 @@ export async function obtenerDato(clave) {
   }
 }
 
-// Función para eliminar datos
+//eliminar datos
 export async function borrarDato(clave) {
   try {
     await localforage.removeItem(clave);
@@ -34,7 +34,7 @@ export async function borrarDato(clave) {
   }
 }
 
-// Función para limpiar todo el almacenamiento
+//limpiar todo el almacenamiento
 export async function limpiarTodo() {
   try {
     await localforage.clear();
