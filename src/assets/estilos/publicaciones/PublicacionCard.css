@@ -112,6 +112,7 @@
 .post-media-slider img,
 .post-media-slider video {
   width: 100%;
+  height: 400px;
   max-height: 400px;
   object-fit: cover;
 }
