@@ -1,0 +1,102 @@
+.ayuda-wrapper {
+  background: #0b0b0b;
+  min-height: 100vh;
+  color: #fff;
+}
+
+.ayuda-contenido {
+  padding: 16px;
+  padding-bottom: 88px; /* espacio para el menú inferior */
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.ayuda-titulo {
+  font-size: 22px;
+  margin: 8px 0 4px;
+  border-bottom: 2px solid #e63946;
+  display: inline-block;
+  padding-bottom: 2px;
+}
+
+.ayuda-intro {
+  color: #cfcfcf;
+  margin-bottom: 16px;
+}
+
+.ayuda-card {
+  background: #111;
+  border: 1px solid #1f1f1f;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+
+.ayuda-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.badge {
+  background: #2b9348;  /* Android */
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+}
+
+.badge-ios {
+  background: #3a86ff;
+}
+
+.ayuda-card h2 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.pasos {
+  margin: 8px 0 10px;
+  padding-left: 18px;
+}
+
+.pasos li {
+  margin: 6px 0;
+  line-height: 1.35;
+}
+
+.tip {
+  font-size: 13px;
+  color: #bbb;
+  margin: 6px 0 0;
+}
+
+.ayuda-faq {
+  margin-top: 16px;
+  background: #101010;
+  border: 1px dashed #2a2a2a;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.ayuda-faq h3 {
+  margin: 0 0 8px;
+  color: #e63946;
+  font-size: 16px;
+}
+
+.ayuda-faq ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #d7d7d7;
+}
+
+@media (min-width: 720px) {
+  .ayuda-card { padding: 18px; }
+  .ayuda-titulo { font-size: 24px; }
+}

@@ -20,6 +20,7 @@ import InformacionCita from './features/citas/InformacionCita'
 //Perfil
 import PerfilCliente from './features/usuario/PerfilCliente'
 import HistorialSesiones from './components/rutinas/HistorialSesiones';
+import AyudaInstalacion from './features/auth/AyudaInstalacion';
 const AppRouter = () => {
   const [token, setToken] = useState(localStorage.getItem('token'));
 
@@ -44,6 +45,7 @@ const AppRouter = () => {
       <>
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<Navigate to="/login" />} />
+        <Route path="/ayuda-instalacion" element={<AyudaInstalacion />} />
       </>
     ) : (
       <>

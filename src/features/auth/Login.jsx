@@ -7,10 +7,9 @@ export default function Login() {
   const [nombreusuario, setNombreusuario] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(""); 
-  const [deferredPrompt, setDeferredPrompt] = useState(null); // 👉 evento PWA
+  const [deferredPrompt, setDeferredPrompt] = useState(null); 
   const navigate = useNavigate();
   const BASE_URL = import.meta.env.VITE_FOTOS_BASE_URL
-  // Capturar el evento cuando el navegador detecta que se puede instalar
   useEffect(() => {
     const handler = (e) => {
       e.preventDefault();
@@ -91,6 +90,9 @@ export default function Login() {
           </button>
         </div>
       )}
+      <p className="login-register">
+        <Link to="/ayuda-instalacion" className="detalle-btn">Cómo instalar</Link>
+      </p>
     </div>
   );
 }
