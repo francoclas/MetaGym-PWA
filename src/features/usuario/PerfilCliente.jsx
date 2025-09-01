@@ -25,18 +25,25 @@ const PerfilCliente = () => {
 
   useEffect(() => {
     const fetchPerfil = async () => {
-      const res = await obtenerPerfilUsuario(usuarioId, "Cliente");
-      if (res.ok) {
-        setPerfil(res.data);
-        setFormData({
-          nombreCompleto: res.data.nombreCompleto || "",
-          correo: res.data.correo || "",
-          telefono: res.data.telefono || "",
-          password: "",
-          confPassword: ""
-        });
+     try {
+        const res = await obtenerPerfilUsuario(usuarioId, "Cliente");
+        if (res.ok) {
+          setPerfil(res.data);
+          setFormData({
+            nombreCompleto: res.data.nombreCompleto || "",
+            correo: res.data.correo || "",
+            telefono: res.data.telefono || "",
+            password: "",
+            confPassword: ""
+          });
+        } else {
+          setPerfil(null); // si falla la API
+        }
+      } catch {
+        setPerfil(null); // si hay error de red
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
 
     fetchPerfil();
@@ -85,65 +92,80 @@ const PerfilCliente = () => {
 
   return (
     <div className="perfil-container">
-      <div className="perfil-imagen-container">
+    <div className="perfil-imagen-container">
+      {perfil && perfil.imagenPerfilURL ? (
         <img
           src={`${import.meta.env.VITE_FOTOS_BASE_URL}${perfil.imagenPerfilURL}`}
           alt="Perfil"
           className="perfil-imagen"
         />
-      </div>
-
-      <div className="perfil-info">
-        <button onClick={logout}>Cerrar sesión</button>
-
-        <h3 className="perfil-nombre-usuario">@{nombreUsuario}</h3>
-
-        <label htmlFor="nombreCompleto">Nombre completo</label>
-        <input
-          type="text"
-          name="nombreCompleto"
-          value={formData.nombreCompleto}
-          onChange={handleChange}
+      ) : (
+        <img
+          src="/imgs/default-user.png" // fallback en /public/imgs/
+          alt="Sin perfil"
+          className="perfil-imagen"
         />
-
-        <label htmlFor="correo">Correo</label>
-        <input
-          type="email"
-          name="correo"
-          value={formData.correo}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="telefono">Teléfono</label>
-        <input
-          type="text"
-          name="telefono"
-          value={formData.telefono}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="password">Nueva Contraseña</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="confPassword">Confirmar Contraseña</label>
-        <input
-          type="password"
-          name="confPassword"
-          value={formData.confPassword}
-          onChange={handleChange}
-        />
-
-        <button className="btn-guardar" onClick={manejoGuardarCambios}>
-          Guardar cambios
-        </button>
-      </div>
+      )}
     </div>
-  );
+
+    <div className="perfil-info">
+      <button onClick={logout}>Cerrar sesión</button>
+
+      {perfil ? (
+        <>
+          <h3 className="perfil-nombre-usuario">@{nombreUsuario}</h3>
+
+          <label htmlFor="nombreCompleto">Nombre completo</label>
+          <input
+            type="text"
+            name="nombreCompleto"
+            value={formData.nombreCompleto}
+            onChange={handleChange}
+          />
+
+          <label htmlFor="correo">Correo</label>
+          <input
+            type="email"
+            name="correo"
+            value={formData.correo}
+            onChange={handleChange}
+          />
+
+          <label htmlFor="telefono">Teléfono</label>
+          <input
+            type="text"
+            name="telefono"
+            value={formData.telefono}
+            onChange={handleChange}
+          />
+
+          <label htmlFor="password">Nueva Contraseña</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+
+          <label htmlFor="confPassword">Confirmar Contraseña</label>
+          <input
+            type="password"
+            name="confPassword"
+            value={formData.confPassword}
+            onChange={handleChange}
+          />
+
+          <button className="btn-guardar" onClick={manejoGuardarCambios}>
+            Guardar cambios
+          </button>
+        </>
+      ) : (
+        <p className="perfil-error">
+          ❌ No se pudo cargar el perfil. Verifica tu conexión o vuelve a intentarlo más tarde.
+        </p>
+      )}
+    </div>
+  </div>);
 };
 
 export default PerfilCliente;

@@ -50,7 +50,7 @@ export default function Login() {
   return (
     <div className="login-wrapper">
       <img
-        src="../../public/imgs/logos/metagymlogo.png"
+        src="/imgs/logos/metagymLogo.png"
         alt="MetaGym Logo"
         className="login-logo"
       />
